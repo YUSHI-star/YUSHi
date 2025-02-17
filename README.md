@@ -7,7 +7,7 @@ local openButton = Instance.new("TextButton")
 openButton.Size = UDim2.new(0, 50, 0, 50)
 openButton.Position = UDim2.new(0, 10, 0, 10)
 openButton.BackgroundTransparency = 0.5
-openButton.Text = "⚙️"
+openButton.Text = "😏"
 openButton.Parent = screenGui
 
 -- Apply UI Styling
