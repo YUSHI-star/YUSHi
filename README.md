@@ -1,110 +1,120 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-
+local player = game.Players.LocalPlayer 
 local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+screenGui.Parent = game.CoreGui
 
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0.4, 0, 0.4, 0)
-frame.Position = UDim2.new(0.35, 0, 0.28, 0)
-frame.BackgroundColor3 = Color3.new(0, 0, 0)
-frame.BorderColor3 = Color3.new(255, 255, 0)
-frame.BorderSizePixel = 3 
-frame.Parent = screenGui
+-- Create Open Button
+local openButton = Instance.new("TextButton")
+openButton.Size = UDim2.new(0, 50, 0, 50)
+openButton.Position = UDim2.new(0, 10, 0, 10)
+openButton.BackgroundTransparency = 0.5
+openButton.Text = "⚙️"
+openButton.Parent = screenGui
 
-local closeButton = Instance.new("TextButton")
-closeButton.Size = UDim2.new(0.1, 0.0, 0.2, 0)
-closeButton.Position = UDim2.new(0.9, 0, 0., 0)
-closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-closeButton.Text = "X"
-closeButton.TextColor3 = Color3.new(1, 1, 1)
-closeButton.Font = Enum.Font.GothamBlack
-closeButton.TextSize = 24
-closeButton.Parent = frame
+-- Apply UI Styling
+local function applyUIStyling(gui)
+    local uiCorner = Instance.new("UICorner")
+    uiCorner.CornerRadius = UDim.new(0, 8)
+    uiCorner.Parent = gui
 
-local imageLabel = Instance.new("ImageLabel")
-imageLabel.Size = UDim2.new(0.275, 0, 0.55, 0)
-imageLabel.Position = UDim2.new(0.01, 0., 0.3, 0)
-imageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
-imageLabel.Image = "rbxassetid://121960046717999"
-imageLabel.Parent = frame
-
-local imageLabelCorner = Instance.new("UICorner")
-imageLabelCorner.CornerRadius = UDim.new(0, 8)
-imageLabelCorner.Parent = imageLabel
-
-
-local title = Instance.new("TextLabel")
-title.Size = UDim2.new(0.8, 0, 0.2, 0)
-title.Position = UDim2.new(0.1, 0.19, 0, 0)
-title.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
-title.Text = "Abrir o YUSHI HUB"
-title.TextColor3 = Color3.new(1, 1, 1)
-title.Font = Enum.Font.GothamBlack
-title.TextSize = 24
-title.Parent = frame
-
-local textBox = Instance.new("TextBox")
-textBox.Size = UDim2.new(0.6, 0., 0.2, 0.3)
-textBox.Position = UDim2.new(0.3, 0, 0.3, 0)
-textBox.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
-textBox.Text = "____"
-textBox.TextColor3 = Color3.new(1, 1, 1)
-textBox.Font = Enum.Font.GothamBlack
-textBox.TextSize = 18
-textBox.Parent = frame
-
-local textBoxCorner = Instance.new("UICorner")
-textBoxCorner.CornerRadius = UDim.new(0, 6)
-textBoxCorner.Parent = textBox
-
-local enterKeyButton = Instance.new("TextButton")
-enterKeyButton.Size = UDim2.new(0.29, 0, 0.15, 0)
-enterKeyButton.Position = UDim2.new(0.3, 0, 0.55, 0)
-enterKeyButton.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
-enterKeyButton.Text = "Verificar a key"
-enterKeyButton.TextColor3 = Color3.new(1, 1, 1)
-enterKeyButton.Font = Enum.Font.GothamBlack
-enterKeyButton.TextSize = 18
-enterKeyButton.Parent = frame
-
-local enterKeyButtonCorner = Instance.new("UICorner")
-enterKeyButtonCorner.CornerRadius = UDim.new(0, 6)
-enterKeyButtonCorner.Parent = enterKeyButton
-
-local getKeyButton = Instance.new("TextButton")
-getKeyButton.Size = UDim2.new(0.29, 0, 0.15, 0)
-getKeyButton.Position = UDim2.new(0.61, 0, 0.55, 0)
-getKeyButton.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
-getKeyButton.Text = "DESATIVADO"
-getKeyButton.TextColor3 = Color3.new(1, 1, 1)
-getKeyButton.Font = Enum.Font.GothamBlack
-getKeyButton.TextSize = 18
-getKeyButton.Parent = frame
-
-local getKeyButtonCorner = Instance.new("UICorner")
-getKeyButtonCorner.CornerRadius = UDim.new(0, 6)
-getKeyButtonCorner.Parent = getKeyButton
-
-local function setClipboardWithURL()
-    setclipboard("chicheat")
+    local uiStroke = Instance.new("UIStroke")
+    uiStroke.Thickness = 1
+    uiStroke.Color = Color3.fromRGB(150, 150, 150)
+    uiStroke.Parent = gui
 end
 
-local getKeyButton = Instance.new("TextButton")
-getKeyButton.Size = UDim2.new(0.6, 0, 0.15, 0)
-getKeyButton.Position = UDim2.new(0.3, 0, 0.72, 0)
-getKeyButton.BackgroundColor3 = Color3.new(0.3, 0.3, 0.3)
-getKeyButton.Text = "copiar grupo do whatsapp"
-getKeyButton.TextColor3 = Color3.new(1, 1, 1)
-getKeyButton.Font = Enum.Font.GothamBlack
-getKeyButton.TextSize = 18
-getKeyButton.Parent = frame
+applyUIStyling(openButton)
 
-local getKeyButtonCorner = Instance.new("UICorner")
-getKeyButtonCorner.CornerRadius = UDim.new(0, 6)
-getKeyButtonCorner.Parent = getKeyButton
+-- Create Main GUI
+local mainGui = Instance.new("Frame")
+mainGui.Size = UDim2.new(0, 200, 0, 120)
+mainGui.Position = UDim2.new(0.5, -100, 0.5, -60)
+mainGui.BackgroundTransparency = 0.5
+mainGui.Visible = false
+mainGui.Parent = screenGui
 
-local function setClipboardWithURL()
-    setclipboard("https://whatsapp.com/channel/0029VazTewDL2ATvkHbOxJ1I")
+applyUIStyling(mainGui)
+
+-- Draggability
+local dragging, dragInput, dragStart, startPos
+local function update(input)
+    local delta = input.Position - dragStart
+    mainGui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
 end
 
-getKeyButton.MouseButton1Click:Connect(setClipboardWithURL)
+mainGui.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = mainGui.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+mainGui.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        update(input)
+    end
+end)
+
+-- Create Label
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, 0, 0, 30)
+titleLabel.Text = "Hitbox made by Lucksad"
+titleLabel.BackgroundTransparency = 1
+titleLabel.TextScaled = true
+titleLabel.TextColor3 = Color3.new(1, 1, 1)
+titleLabel.Parent = mainGui
+
+-- Create Expand Hitbox Button
+local expandButton = Instance.new("TextButton")
+expandButton.Size = UDim2.new(0.8, 0, 0, 40)
+expandButton.Position = UDim2.new(0.1, 0, 0.5, -20)
+expandButton.Text = "Expand Hitbox"
+expandButton.BackgroundTransparency = 0.5
+expandButton.Parent = mainGui
+
+applyUIStyling(expandButton)
+
+-- Hitbox Expansion Logic
+_G.HeadSize = 20
+_G.Disabled = true
+
+game:GetService('RunService').RenderStepped:Connect(function()
+    if not _G.Disabled then
+        for _, v in pairs(game:GetService('Players'):GetPlayers()) do
+            if v ~= player then -- Ignore the player using the script
+                pcall(function()
+                    local rootPart = v.Character and v.Character:FindFirstChild("HumanoidRootPart")
+                    if rootPart then
+                        rootPart.Size = Vector3.new(_G.HeadSize, _G.HeadSize, _G.HeadSize)
+                        rootPart.Transparency = 0.7
+                        rootPart.BrickColor = BrickColor.new("Really blue")
+                        rootPart.Material = Enum.Material.Neon
+                        rootPart.CanCollide = false
+                    end
+                end)
+            end
+        end
+    end
+end)
+
+-- Toggle Hitbox Expansion
+expandButton.MouseButton1Click:Connect(function()
+    _G.Disabled = not _G.Disabled
+end)
+
+-- Toggle GUI Visibility
+openButton.MouseButton1Click:Connect(function()
+    mainGui.Visible = not mainGui.Visible
+end)
